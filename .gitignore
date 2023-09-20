@@ -8,4 +8,5 @@ target
 
 #General
 bak
+*.tar.gz
 

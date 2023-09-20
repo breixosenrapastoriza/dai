@@ -16,6 +16,21 @@ En el desarrollo de este proyecto debe utilizarse:
 
 * Java 11
 * MySQL 8+
+* Maven 3.6+
+* Git 2+ (en el caso de querer hacer commits, lo cual es recomendable)
+
+Es importante que antes de empezar a trabajar se edite el fichero `pom.xml` para:
+
+* Poner en la propiedad `group.name` el nombre del grupo en Moovi.
+* Descomentar y completar la sección `developers` con los datos de los miembros del grupo.
+
+### Comandos útiles
+Algunos comandos Maven que te serán útiles son:
+
+* `mvn test`: ejecuta los tests y genera un informe en `target/site/surefire-report.html`.
+* `mvn exec:java`: ejecuta la aplicación (es decir, ejecuta `Launcher`).
+* `mvn exec:java -Dexec.args="arg1 arg2 arg3"`: ejecuta la aplicación con los parámetos `arg1 arg2 arg3`. Por ejemplo, `mvn exec:java -Dexec.args="config.props"` ejecuta `Launcher` pasándole el parámetro `config.props`.
+* `mvn package`: empaqueta la aplicación. Generará un fichero `hybrid-server-<nombre del grupo>.r1.tar.gz` en la raíz del proyecto que es el que habrá que entregar en Moovi en la primera entrega.
 
 ## Arquitectura
 
