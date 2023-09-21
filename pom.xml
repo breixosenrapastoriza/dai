@@ -9,8 +9,8 @@
 	<version>1.0.0-SNAPSHOT</version>
 
 	<name>Hybrid Server</name>
-
 	<description>Servidor Híbrido de Documentos Estructurados</description>
+	<url>https://sing-group.org/dt/gitlab/dai-2223/hybrid-server</url>
 
 	<contributors>
 		<contributor>
