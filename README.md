@@ -95,7 +95,7 @@ Un formulario HTML adaptado a este tipo de petición podría ser el siguiente:
 
 ```html
 <form action=”http://localhost:2000/html” method=”POST”>
-   <textarea name=”**html**”></textarea>
+   <textarea name=”html”></textarea>
    <button type=”submit”>Submit</button>
 </form>
 ```
