@@ -23,14 +23,16 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 import java.io.IOException;
 
-import org.junit.jupiter.api.RepeatedTest;
+import org.junit.jupiter.api.Test;
 
 import es.uvigo.esei.dai.hybridserver.utils.HybridServerTestCase;
 
 public class WelcomePageTest extends HybridServerTestCase {
 
-  @RepeatedTest(10)
+  @Test
   public void testWelcome() throws IOException {
-    assertThat(getContentWithType(url, "text/html"), containsString("Hybrid Server"));
+    for (int i = 0; i < 10; i++) {
+      assertThat(getContentWithType(url, "text/html"), containsString("Hybrid Server"));
+    }
   }
 }
