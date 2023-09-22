@@ -26,8 +26,10 @@ public class HTTPRequestGETParametersTest {
 
   @BeforeEach
   public void setUp() throws Exception {
-    requestText = "GET /hello/world.html?country=Spain&province=Ourense&city=Ourense HTTP/1.1\r\n"
-      + "Host: localhost\r\n" + "Accept: text/html\r\n"
+    requestText =
+      "GET /hello/world.html?country=Spain&province=Ourense&city=Ourense HTTP/1.1\r\n"
+      + "Host: localhost\r\n"
+      + "Accept: text/html\r\n"
       + "Accept-Encoding: gzip,deflate\r\n";
 
     request = new HTTPRequest(new StringReader(requestText + "\r\n"));

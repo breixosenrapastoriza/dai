@@ -27,16 +27,20 @@ public class HTTPRequestPOSTEncodedTest {
 
   @BeforeEach
   public void setUp() throws Exception {
-    this.requestText = "POST / HTTP/1.1\r\n"
+    this.requestText =
+      "POST / HTTP/1.1\r\n"
       + "Host: localhost\r\n"
       + "Content-Type: application/x-www-form-urlencoded\r\n"
-      + "Content-Length: 116\r\n\r\n"
+      + "Content-Length: 116\r\n"
+      + "\r\n"
       + "message=Hello world!!&mensaje=¡¡Hola mundo!!&mensaxe=Ola mundo!!&mensagem=Olá mundo!!";
 
-    this.encodedRequestText = "POST / HTTP/1.1\r\n"
+    this.encodedRequestText =
+      "POST / HTTP/1.1\r\n"
       + "Host: localhost\r\n"
       + "Content-Type: application/x-www-form-urlencoded\r\n"
-      + "Content-Length: 116\r\n\r\n"
+      + "Content-Length: 116\r\n"
+      + "\r\n"
       + "message=Hello+world%21%21&mensaje=%C2%A1%C2%A1Hola+mundo%21%21&mensaxe=Ola+mundo%21%21&mensagem=Ol%C3%A1+mundo%21%21";
 
     this.request = new HTTPRequest(new StringReader(this.encodedRequestText));

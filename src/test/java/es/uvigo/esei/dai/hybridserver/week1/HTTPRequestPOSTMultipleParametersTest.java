@@ -25,9 +25,11 @@ public class HTTPRequestPOSTMultipleParametersTest {
 
   @BeforeEach
   public void setUp() throws Exception {
-    this.requestText = "POST /resource HTTP/1.1\r\n"
+    this.requestText =
+      "POST /resource HTTP/1.1\r\n"
       + "Host: localhost\r\n"
-      + "Content-Length: 85\r\n\r\n"
+      + "Content-Length: 85\r\n"
+      + "\r\n"
       + "message=Hello world!!&mensaje=¡¡Hola mundo!!&mensaxe=Ola mundo!!&mensagem=Olá mundo!!";
 
     this.request = new HTTPRequest(new StringReader(this.requestText));

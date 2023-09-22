@@ -27,7 +27,8 @@ public class HTTPRequestGETRootTest {
 
   @BeforeEach
   public void setUp() throws Exception {
-    this.requestText = "GET / HTTP/1.1\r\n"
+    this.requestText =
+      "GET / HTTP/1.1\r\n"
       + "Host: localhost\r\n";
 
     this.request = new HTTPRequest(new StringReader(this.requestText + "\r\n"));

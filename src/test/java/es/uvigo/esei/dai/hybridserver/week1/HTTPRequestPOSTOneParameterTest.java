@@ -26,9 +26,11 @@ public class HTTPRequestPOSTOneParameterTest {
 
   @BeforeEach
   public void setUp() throws Exception {
-    this.requestText = "POST / HTTP/1.1\r\n"
+    this.requestText =
+      "POST / HTTP/1.1\r\n"
       + "Host: localhost\r\n"
-      + "Content-Length: 21\r\n\r\n"
+      + "Content-Length: 21\r\n"
+      + "\r\n"
       + "message=Hello world!!";
 
     this.request = new HTTPRequest(new StringReader(this.requestText));

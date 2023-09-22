@@ -27,7 +27,8 @@ public class HTTPRequestGETResourcesTest {
 
   @BeforeEach
   public void setUp() throws Exception {
-    this.requestText = "GET /hello/world.html HTTP/1.1\r\n"
+    this.requestText =
+      "GET /hello/world.html HTTP/1.1\r\n"
       + "Host: localhost\r\n"
       + "Accept: text/html\r\n"
       + "Accept-Encoding: gzip,deflate\r\n";
