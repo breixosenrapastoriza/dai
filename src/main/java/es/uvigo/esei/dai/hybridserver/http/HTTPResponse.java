@@ -17,81 +17,106 @@
  */
 package es.uvigo.esei.dai.hybridserver.http;
 
+import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.StringWriter;
 import java.io.Writer;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.HashMap;
 
 public class HTTPResponse {
-  public HTTPResponse() {
-    // TODO Completar
-  }
 
-  public HTTPResponseStatus getStatus() {
-    // TODO Completar
-    return null;
-  }
+	private HTTPResponseStatus status;
+	private String version;
+	private String content;
+	private Map<String, String> parameters;
 
-  public void setStatus(HTTPResponseStatus status) {
-  }
+	public HTTPResponse() {
+		version = "";
+		content = "";
+		status = HTTPResponseStatus.S200;
+		parameters = new HashMap<String, String>();
+	}
 
-  public String getVersion() {
-    // TODO Completar
-    return null;
-  }
+	public HTTPResponseStatus getStatus() {
+		return status;
+	}
 
-  public void setVersion(String version) {
-  }
+	public void setStatus(HTTPResponseStatus status) {
+		this.status = status;
+	}
 
-  public String getContent() {
-    // TODO Completar
-    return null;
-  }
+	public String getVersion() {
+		return version;
+	}
 
-  public void setContent(String content) {
-  }
+	public void setVersion(String version) {
+		this.version = version;
+	}
 
-  public Map<String, String> getParameters() {
-    // TODO Completar
-    return null;
-  }
+	public String getContent() {
+		return content;
+	}
 
-  public String putParameter(String name, String value) {
-    // TODO Completar
-    return null;
-  }
+	public void setContent(String content) {
+		this.content = content;
+	}
 
-  public boolean containsParameter(String name) {
-    // TODO Completar
-    return false;
-  }
+	public Map<String, String> getParameters() {
+		return parameters;
+	}
 
-  public String removeParameter(String name) {
-    // TODO Completar
-    return null;
-  }
+	public String putParameter(String name, String value) {
+		return parameters.put(name, value);
+	}
 
-  public void clearParameters() {
-  }
+	public boolean containsParameter(String name) {
+		return parameters.containsKey(name);
+	}
 
-  public List<String> listParameters() {
-    // TODO Completar
-    return null;
-  }
+	public String removeParameter(String name) {
+		return parameters.remove(name);
+	}
 
-  public void print(Writer writer) throws IOException {
-    // TODO Completar
-  }
+	public void clearParameters() {
+		parameters.clear();
+	}
 
-  @Override
-  public String toString() {
-    try (final StringWriter writer = new StringWriter()) {
-      this.print(writer);
+	public List<String> listParameters() {
+		List<String> keysList = new ArrayList<>(parameters.keySet());
+		return keysList;
+	}
 
-      return writer.toString();
-    } catch (IOException e) {
-      throw new RuntimeException("Unexpected I/O exception", e);
-    }
-  }
+	/*
+	 * public void print(Writer writer) throws IOException { BufferedWriter
+	 * bufferedWriter = new BufferedWriter(writer); String responseText = "";
+	 * responseText += this.getVersion(); bufferedWriter.write("HOLA"); }
+	 */
+
+	public void print(Writer writer) throws IOException {
+		BufferedWriter bufferedWriter = new BufferedWriter(writer);
+		String textResponse = this.getStatus().getStatus();
+		bufferedWriter.write(this.getVersion() + " " + this.getStatus().getCode() + " " + textResponse + "\r\n");
+		if (this.getContent().length() != 0) {
+			this.putParameter("Content-Length", this.getContent().length() + "");
+		}
+		for (Map.Entry<String, String> entry : this.getParameters().entrySet()) {
+			bufferedWriter.write(entry.getKey() + ": " + entry.getValue() + "\r\n");
+		}
+		bufferedWriter.write("\r\n" + this.getContent());
+		bufferedWriter.flush();
+	}
+
+	@Override
+	public String toString() {
+		try (final StringWriter writer = new StringWriter()) {
+			this.print(writer);
+			// writer.append(getVersion()).append(getContent());
+			return writer.toString();
+		} catch (IOException e) {
+			throw new RuntimeException("Unexpected I/O exception", e);
+		}
+	}
 }

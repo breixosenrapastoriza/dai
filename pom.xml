@@ -25,28 +25,18 @@
 		</contributor>
 	</contributors>
 
-	<!-- developers>
+	<developers>
 		<developer>
 			<id>[Login el email de la ESEI (p.ej. student@esei.uvigo.es => student)]</id>
-			<email>[xxx@esei.uvigo.es]</email>
-			<name>[Nombre completo]</name>
+			<email>bspastoriza19@esei.uvigo.es</email>
+			<name>Breixo Senra Pastoriza</name>
 			<organization>Escola Superior de Enxeñaría Informática - Universidade de
 	Vigo</organization>
 			<roles>
 				<role>student</role>
 			</roles>
 		</developer>
-		<developer>
-			<id>[Login el email de la ESEI (p.ej. student@esei.uvigo.es => student)]</id>
-			<email>[xxx@esei.uvigo.es]</email>
-			<name>[Nombre completo]</name>
-			<organization>Escola Superior de Enxeñaría Informática - Universidade de
-	Vigo</organization>
-			<roles>
-				<role>student</role>
-			</roles>
-		</developer>
-	</developers -->
+	</developers>
 
 	<properties>
 		<group.name>[nombre_del_grupo]</group.name>

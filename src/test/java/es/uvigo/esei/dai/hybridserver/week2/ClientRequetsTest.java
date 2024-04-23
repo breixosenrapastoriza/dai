@@ -117,6 +117,8 @@ public class ClientRequetsTest extends HybridServerTestCase {
     final String url = this.url + "html?uuid=" + uuid;
     assertThat("The new page couldn't be retrieved", getContent(url), is(equalTo(content)));
   }
+  
+  
 
   @Test
   public void testDelete() throws IOException {
