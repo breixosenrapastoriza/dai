@@ -25,14 +25,12 @@ public class ServiceThread implements Runnable {
 		this.socket = clientSocket;
 		this.htmlController = new HtmlController(properties);
 	}
-	
-	
+
 	public ServiceThread(Socket clientSocket, Map<String, String> pages) throws IOException {
 		this.socket = clientSocket;
 		this.htmlController = new HtmlController(pages);
 	}
-	
-	
+
 	@Override
 	public void run() {
 		try (this.socket) {
@@ -55,12 +53,14 @@ public class ServiceThread implements Runnable {
 					} else {
 						String text = "<ul>";
 						for (Html html : htmlController.list()) {
-							text += "<li><a>" + html.getUuid() + "</a></li>";
+							text += "<li><a href=\"html?uuid=" + html.getUuid() + "\">" + html.getUuid() + "</a></li>";
+							// text += "<li><a>" + html.getUuid() + "</a></li>";
 						}
 						text += "</ul>";
 						response.setContent(text);
 					}
 				} else {
+					response.setContent("<h1>Error: Page Not Found</h1>");
 					response.setStatus(HTTPResponseStatus.S400);
 				}
 			} else if (request.getMethod().name().equals("POST")) {
