@@ -10,8 +10,11 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
+<<<<<<< HEAD
 import es.uvigo.esei.dai.hybridserver.http.HTTPParseException;
 
+=======
+>>>>>>> 20f869aeb28713db43b52e8edc4954900e2a0543
 public class HybridServer implements AutoCloseable {
 	private static final int SERVICE_PORT = 8888;
 	private Thread serverThread;
@@ -22,7 +25,11 @@ public class HybridServer implements AutoCloseable {
 
 	private Map<String, String> pages;
 	private Properties properties;
+<<<<<<< HEAD
 	private Configuration configuration;
+=======
+	
+>>>>>>> 20f869aeb28713db43b52e8edc4954900e2a0543
 	
 	
 	public HybridServer() {
@@ -35,10 +42,13 @@ public class HybridServer implements AutoCloseable {
 		this.properties.setProperty("db.password", "hsdbpass");
 	}
 
+<<<<<<< HEAD
 	public HybridServer(Configuration configuration) {
 		this.configuration = configuration;
 	}
 
+=======
+>>>>>>> 20f869aeb28713db43b52e8edc4954900e2a0543
 	public HybridServer(Map<String, String> pages) {
 		// TODO Inicializar con la base de datos en memoria conteniendo "pages"
 		this.pages = pages;
@@ -76,7 +86,11 @@ public class HybridServer implements AutoCloseable {
 						}
 
 					}
+<<<<<<< HEAD
 				} catch (IOException | SQLException | HTTPParseException e) {
+=======
+				} catch (IOException | SQLException e) {
+>>>>>>> 20f869aeb28713db43b52e8edc4954900e2a0543
 					e.printStackTrace();
 				}
 			}

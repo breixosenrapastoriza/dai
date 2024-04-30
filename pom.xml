@@ -174,7 +174,11 @@
 					<testFailureIgnore>true</testFailureIgnore>
 					<includes>
 						<include>
+<<<<<<< HEAD
 							es/uvigo/esei/dai/hybridserver/HybridServerSecondReleaseTestSuite.java
+=======
+							es/uvigo/esei/dai/hybridserver/HybridServerFirstReleaseTestSuite.java
+>>>>>>> 20f869aeb28713db43b52e8edc4954900e2a0543
 						</include>
 					</includes>
 				</configuration>
@@ -203,11 +207,19 @@
 						</goals>
 						<configuration>
 							<appendAssemblyId>false</appendAssemblyId>
+<<<<<<< HEAD
 							<finalName>hybrid-server-${group.name}.r2</finalName>
 							<outputDirectory>${project.basedir}</outputDirectory>
 							<descriptors>
 								<descriptor>
 									src/main/assembly/assembly-second-release.xml
+=======
+							<finalName>hybrid-server-${group.name}.r1</finalName>
+							<outputDirectory>${project.basedir}</outputDirectory>
+							<descriptors>
+								<descriptor>
+									src/main/assembly/assembly-first-release.xml
+>>>>>>> 20f869aeb28713db43b52e8edc4954900e2a0543
 								</descriptor>
 							</descriptors>
 						</configuration>

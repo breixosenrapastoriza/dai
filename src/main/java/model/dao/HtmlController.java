@@ -10,6 +10,7 @@ import java.util.Properties;
 public class HtmlController {
 
 	private HtmlDAO htmlDAO;
+<<<<<<< HEAD
 	
 	
 	public HtmlController(Properties properties, String table) throws SQLException {
@@ -17,13 +18,25 @@ public class HtmlController {
 		Connection connection = DriverManager.getConnection(properties.getProperty("db.url"),
 				properties.getProperty("db.user"), properties.getProperty("db.password"));
 		this.htmlDAO = new HtmlDBDAO(connection, table);
+=======
+
+	public HtmlController(Properties properties) throws SQLException {
+		
+		Connection connection = DriverManager.getConnection(properties.getProperty("db.url"),
+				properties.getProperty("db.user"), properties.getProperty("db.password"));
+		this.htmlDAO = new HtmlDBDAO(connection);
+>>>>>>> 20f869aeb28713db43b52e8edc4954900e2a0543
 	}
 
 	public HtmlController(Map<String, String> pages) {
 		this.htmlDAO = new HtmlMapDAO(pages);
 	}
+<<<<<<< HEAD
 	
 	
+=======
+
+>>>>>>> 20f869aeb28713db43b52e8edc4954900e2a0543
 	public void add(Html html) {
 		htmlDAO.create(html);
 	}
