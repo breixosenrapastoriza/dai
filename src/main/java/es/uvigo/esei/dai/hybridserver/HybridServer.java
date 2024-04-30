@@ -39,12 +39,6 @@ public class HybridServer implements AutoCloseable {
 		this.configuration = configuration;
 	}
 
-	public HybridServer(Map<String, String> pages) {
-		// TODO Inicializar con la base de datos en memoria conteniendo "pages"
-		this.pages = pages;
-		this.port = SERVICE_PORT;
-		this.numClients = 50;
-	}
 
 	public HybridServer(Properties properties) {
 		// TODO Inicializar con los parámetros recibidos
@@ -72,11 +66,11 @@ public class HybridServer implements AutoCloseable {
 						if (pages == null) {
 							threadPool.execute(new ServiceThread(socket, properties));
 						} else {
-							threadPool.execute(new ServiceThread(socket, pages));
+							//threadPool.execute(new ServiceThread(socket, pages));
 						}
 
 					}
-				} catch (IOException | SQLException | HTTPParseException e) {
+				} catch (IOException | SQLException e) {
 					e.printStackTrace();
 				}
 			}

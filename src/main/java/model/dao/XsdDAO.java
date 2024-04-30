@@ -8,26 +8,24 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HtmlDBDAO implements HtmlDAO {
+public class XsdDAO{
 
 	private Connection connection;
-	private String table;
 
-	public HtmlDBDAO(Connection connection, String table) throws SQLException {
-		this.table = table;
+	public XsdDAO(Connection connection) throws SQLException {
 		this.connection = connection;
-		this.connection.createStatement().execute("CREATE TABLE IF NOT EXISTS XML (\r\n"
+		this.connection.createStatement().execute("CREATE TABLE IF NOT EXISTS XSD (\r\n"
 				+ "    uuid CHAR(36) PRIMARY KEY,\r\n" + "    content TEXT NOT NULL\r\n" + ")");
 	}
 
-	@Override
-	public void create(Html html) {
+
+	public void create(Xsd xsd) {
 		try (Statement statement = connection.createStatement()) {
-			String sql = "INSERT INTO " + this.table + " (uuid, content) VALUES (?, ?)";
+			String sql = "INSERT INTO XSD (uuid, content) VALUES (?, ?)";
 
 			PreparedStatement preparedStatement = connection.prepareStatement(sql);
-			preparedStatement.setString(1, html.getUuid());
-			preparedStatement.setString(2, html.getContent());
+			preparedStatement.setString(1, xsd.getUuid());
+			preparedStatement.setString(2, xsd.getContent());
 
 			preparedStatement.executeUpdate();
 		} catch (SQLException e) {
@@ -35,14 +33,13 @@ public class HtmlDBDAO implements HtmlDAO {
 		}
 	}
 
-	@Override
-	public void update(Html html) {
+	public void update(Xsd xsd) {
 		try (Statement statement = connection.createStatement()) {
-			String sql = "UPDATE " + this.table + " uuid = ?, content = ?";
+			String sql = "UPDATE XSD uuid = ?, content = ?";
 
 			PreparedStatement preparedStatement = connection.prepareStatement(sql);
-			preparedStatement.setString(1, html.getUuid());
-			preparedStatement.setString(2, html.getContent());
+			preparedStatement.setString(1, xsd.getUuid());
+			preparedStatement.setString(2, xsd.getContent());
 
 			preparedStatement.executeUpdate();
 		} catch (SQLException e) {
@@ -51,10 +48,9 @@ public class HtmlDBDAO implements HtmlDAO {
 
 	}
 
-	@Override
 	public void delete(String uuid) {
 		try (Statement statement = connection.createStatement()) {
-			String sql = "DELETE FROM " + this.table + " WHERE uuid = ?";
+			String sql = "DELETE FROM XSD WHERE uuid = ?";
 
 			PreparedStatement preparedStatement = connection.prepareStatement(sql);
 			preparedStatement.setString(1, uuid);
@@ -65,10 +61,9 @@ public class HtmlDBDAO implements HtmlDAO {
 		}
 	}
 
-	@Override
-	public Html get(String uuid) {
+	public Xsd get(String uuid) {
 		try (Statement statement = connection.createStatement()) {
-			String sql = "SELECT * FROM " + this.table + " WHERE uuid = ?";
+			String sql = "SELECT * FROM XSD WHERE uuid = ?";
 
 			PreparedStatement preparedStatement = connection.prepareStatement(sql);
 			preparedStatement.setString(1, uuid);
@@ -76,7 +71,7 @@ public class HtmlDBDAO implements HtmlDAO {
 			ResultSet resultSet = preparedStatement.executeQuery();
 			if (resultSet.next()) {
 				String content = resultSet.getString("content");
-				return new Html(uuid, content);
+				return new Xsd(uuid, content);
 			}
 			return null;
 		} catch (SQLException e) {
@@ -84,21 +79,19 @@ public class HtmlDBDAO implements HtmlDAO {
 		}
 	}
 
-	@Override
 	public boolean contains(String uuid) {
-		List<Html> list = list();
-		for (Html html : list) {
-			if (html.getUuid().equals(uuid))
+		List<Xsd> list = list();
+		for (Xsd xsd : list) {
+			if (xsd.getUuid().equals(uuid))
 				return true;
 		}
 		return false;
 	}
 
-	@Override
-	public List<Html> list() {
-		List<Html> list = new ArrayList<Html>();
+	public List<Xsd> list() {
+		List<Xsd> list = new ArrayList<>();
 		try (Statement statement = connection.createStatement()) {
-			String sql = "SELECT * FROM " + this.table + " GROUP BY uuid";
+			String sql = "SELECT * FROM XSD GROUP BY uuid";
 
 			PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
@@ -106,7 +99,7 @@ public class HtmlDBDAO implements HtmlDAO {
 			while (resultSet.next()) {
 				String uuid = resultSet.getString("uuid");
 				String content = resultSet.getString("content");
-				list.add(new Html(uuid, content));
+				list.add(new Xsd(uuid, content));
 			}
 			return list;
 		} catch (SQLException e) {
@@ -116,9 +109,9 @@ public class HtmlDBDAO implements HtmlDAO {
 
 	public String toString() {
 		String string = "";
-		List<Html> list = list();
-		for (Html html : list) {
-			string += html.getUuid() + ":" + html.getContent() + "\n";
+		List<Xsd> list = list();
+		for (Xsd xsd : list) {
+			string += xsd.getUuid() + ":" + xsd.getContent() + "\n";
 		}
 		return string;
 	}

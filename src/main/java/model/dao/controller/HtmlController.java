@@ -1,29 +1,24 @@
-package model.dao;
+package model.dao.controller;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.List;
-import java.util.Map;
 import java.util.Properties;
+
+import model.dao.Html;
+import model.dao.HtmlDAO;
 
 public class HtmlController {
 
 	private HtmlDAO htmlDAO;
-	
-	
-	public HtmlController(Properties properties, String table) throws SQLException {
-		
+
+	public HtmlController(Properties properties) throws SQLException {
 		Connection connection = DriverManager.getConnection(properties.getProperty("db.url"),
 				properties.getProperty("db.user"), properties.getProperty("db.password"));
-		this.htmlDAO = new HtmlDBDAO(connection, table);
+		this.htmlDAO = new HtmlDAO(connection);
 	}
 
-	public HtmlController(Map<String, String> pages) {
-		this.htmlDAO = new HtmlMapDAO(pages);
-	}
-	
-	
 	public void add(Html html) {
 		htmlDAO.create(html);
 	}
@@ -39,8 +34,8 @@ public class HtmlController {
 	public boolean contains(String uuid) {
 		return htmlDAO.contains(uuid);
 	}
-	
-	public List<Html> list(){
+
+	public List<Html> list() {
 		return htmlDAO.list();
 	}
 

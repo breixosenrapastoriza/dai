@@ -1,15 +1,16 @@
 package model.dao;
 
-public class Html {
-
+public class Xslt{
 	private String uuid;
 	private String content;
-
-	public Html(String uuid, String content) {
+	private String xsd;
+	
+	public Xslt(String uuid, String content, String xsd) {
 		this.uuid = uuid;
 		this.content = content;
+		this.xsd = xsd;
 	}
-
+	
 	public String getUuid() {
 		return this.uuid;
 	}
@@ -18,12 +19,19 @@ public class Html {
 		return this.content;
 	}
 
+	public String getXsd() {
+		return this.xsd;
+	}
+	
 	public void setUuid(String uuid) {
 		this.uuid = uuid;
 	}
-
+	
 	public void setContent(String content) {
 		this.content = content;
 	}
-
+	
+	public void setXsd(String xsd) {
+		this.xsd = xsd;
+	}
 }

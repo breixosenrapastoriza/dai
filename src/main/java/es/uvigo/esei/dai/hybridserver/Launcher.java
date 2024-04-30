@@ -52,7 +52,7 @@ public class Launcher {
 		// Creación del servidor con las páginas ya en memoria.
 		final Map<String, String> pages = Stream.of(matrixPages).collect(toMap(entry -> entry[0], entry -> entry[1]));
 
-		HybridServer hybridServer = new HybridServer(pages);
-		hybridServer.start();
+		//HybridServer hybridServer = new HybridServer(pages);
+		//hybridServer.start();
 	}
 }
